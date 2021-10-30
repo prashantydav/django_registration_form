@@ -1,0 +1,33 @@
+{% if request.user.is_authenticated %}
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="{% url 'users:home' %}">home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'users:logout' %}">logout</a>
+      </li>
+
+  {% else %}
+  
+  
+  <ul class="nav nav-tabs">
+    {% if "signin" in request.path %}
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="{% url 'users:signin' %}">signin</a>
+    </li>
+    {% else %}
+    <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="{% url 'users:signin' %}">signin</a>
+      </li>
+      {% endif %}
+      {% if "signup" in request.path %}
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'users:signup' %}">signup</a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="{% url 'users:signup' %}">signup</a>
+      </li>
+      {% endif %}
+      {% endif %}
+  </ul>
